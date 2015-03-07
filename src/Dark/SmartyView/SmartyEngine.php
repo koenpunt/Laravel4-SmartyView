@@ -96,10 +96,9 @@ class SmartyEngine implements Engines\EngineInterface {
 
 			// Add the plugin folder from the config to the Smarty object.
 			// Note that I am using addPluginsDir here rather than setPluginsDir
-			// because I want to add a secondary folder, not replace the
-			// existing folder.
-			foreach($plugins_paths as $path)
-				$Smarty->addPluginsDir($path);
+			// because I want to add folders, and not replace the
+			// existing folders.
+			$Smarty->addPluginsDir($plugins_paths);
 
 			$Smarty->debugging = $debugging;
 			$Smarty->caching = $caching;
