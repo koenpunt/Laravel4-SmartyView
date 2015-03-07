@@ -73,8 +73,6 @@ class SmartyEngine implements Engines\EngineInterface {
 	 */
 	protected function evaluatePath($__path, $__data)
 	{
-		ob_start();
-
 		try {
 			require_once dirname(__FILE__) . '/Smarty/libs/Smarty.class.php';
 
@@ -115,13 +113,11 @@ class SmartyEngine implements Engines\EngineInterface {
 				$Smarty->assign($var, $val);
 			}
 
-			print $Smarty->display($__path);
+			return $Smarty->fetch($__path);
 
 		} catch (\Exception $e) {
 			$this->handleViewException($e);
 		}
-
-		return ob_get_clean();
 	}
 
 	/**
@@ -132,7 +128,7 @@ class SmartyEngine implements Engines\EngineInterface {
 	 */
 	protected function handleViewException($e)
 	{
-		ob_get_clean(); throw $e;
+		throw $e;
 	}
 
 	/**
