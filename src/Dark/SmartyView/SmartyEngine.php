@@ -108,9 +108,7 @@ class SmartyEngine implements Engines\EngineInterface {
 			//$Smarty->escape_html = true;
 			$Smarty->error_reporting = E_ALL &~ E_NOTICE;
 
-			foreach ($__data as $var => $val) {
-				$Smarty->assign($var, $val);
-			}
+			$Smarty->assign($__data);
 
 			return $Smarty->fetch($__path);
 
